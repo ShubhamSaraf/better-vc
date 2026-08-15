@@ -1,6 +1,3 @@
-Exit code: 0
-Wall time: 0.6 seconds
-Output:
 # Better-VC
 
 A minimal 1-to-1 WebRTC calling app that preserves spatial detail by reducing frame rate several times before dropping below 720p.
@@ -22,7 +19,7 @@ For two physical devices, open `https://<computer-lan-ip>:5173` and accept the d
 
 - Requests native 4K30 capture where available and falls back to the camera's highest supported mode.
 - Uses `maintain-resolution`, high sender/network priority, explicit bitrates and frame caps.
-- Automatic ladder: 4K30 at 25 Mbps â†’ 15 Mbps â†’ 1080p30 at 5 Mbps â†’ 3.2 Mbps â†’ 720p30 â†’ 24 â†’ 20 â†’ 15 â†’ 10 fps â†’ 480p.
+- Automatic ladder: 4K30 at 25 Mbps → 15 Mbps → 1080p30 at 5 Mbps → 3.2 Mbps → 720p30 → 24 → 20 → 15 → 10 fps → 480p.
 - Three sustained poor samples trigger one downgrade; nine healthy samples trigger one upgrade.
 - Audio echo cancellation/noise suppression remains enabled and video bitrate is capped per profile.
 - Codec ordering is selectable for real device testing; browser default remains safest.
@@ -41,12 +38,12 @@ STUN works without configuration. TURN credentials are intentionally not bundled
 
 ## Commands
 
-- `npm run dev` â€” signaling server and Vite client
-- `npm run build` â€” strict TypeScript check and production build
-- `npm test` â€” quality-ladder tests
-- `npm run dev:signal` / `npm run dev:client` â€” start components separately
-- `npm run deploy:dry` â€” validate the Cloudflare Worker bundle without publishing
-- `npm run deploy` â€” deploy UI and signaling to `better-vc.shubhamsaraf.dev`
+- `npm run dev` — signaling server and Vite client
+- `npm run build` — strict TypeScript check and production build
+- `npm test` — quality-ladder tests
+- `npm run dev:signal` / `npm run dev:client` — start components separately
+- `npm run deploy:dry` — validate the Cloudflare Worker bundle without publishing
+- `npm run deploy` — deploy UI and signaling to `better-vc.shubhamsaraf.dev`
 
 ## Public deployment
 
@@ -54,5 +51,4 @@ Production uses one Cloudflare Worker for the static client and a hibernating Du
 
 ## Scope boundary
 
-The localhost V1 includes phases 1â€“12 and audio protection fundamentals: capture, signaling, WebRTC, configurable STUN/TURN, diagnostics, manual profiles, smoothed automatic adaptation, codec preference, and CPU-aware downshifting. Bandwidth matrices, device-specific codec conclusions, deployed TURN, face-aware preprocessing, long-duration reliability, and real-network validation require actual target devices/infrastructure; they are experiments rather than claims made by this local build.
-
+The localhost V1 includes phases 1–12 and audio protection fundamentals: capture, signaling, WebRTC, configurable STUN/TURN, diagnostics, manual profiles, smoothed automatic adaptation, codec preference, and CPU-aware downshifting. Bandwidth matrices, device-specific codec conclusions, deployed TURN, face-aware preprocessing, long-duration reliability, and real-network validation require actual target devices/infrastructure; they are experiments rather than claims made by this local build.

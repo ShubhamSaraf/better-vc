@@ -1,0 +1,31 @@
+{
+  "name": "better-vc",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -k -n SIGNAL,CLIENT -c yellow,cyan \"npm:dev:signal\" \"npm:dev:client\"",
+    "dev:client": "vite --host 0.0.0.0",
+    "dev:signal": "node --watch --experimental-strip-types signaling/server.ts",
+    "types:worker": "wrangler types worker-configuration.d.ts",
+    "build": "npm run types:worker && tsc --noEmit && tsc --noEmit -p tsconfig.worker.json && vite build",
+    "deploy": "npm run build && wrangler deploy",
+    "deploy:dry": "npm run build && wrangler deploy --dry-run",
+    "start": "node --experimental-strip-types signaling/server.ts",
+    "test": "vitest run --config vitest.config.ts"
+  },
+  "dependencies": {
+    "ws": "^8.18.3"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260815.1",
+    "@types/node": "^22.18.0",
+    "@types/ws": "^8.18.1",
+    "@vitejs/plugin-basic-ssl": "^2.3.0",
+    "concurrently": "^9.2.1",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.2",
+    "vitest": "^3.2.4",
+    "wrangler": "^4.123.0"
+  }
+}
